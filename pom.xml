@@ -7,7 +7,7 @@
     <groupId>pe.blobfish</groupId>
     <!-- TODO will eventually become something like 'crypto-utils' -->
     <artifactId>certutils</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <dependencies>
         <!-- TODO move this BC dependency as a managed dependency in a 'blobfish' parent project which will be used as a parent for all my work -->
