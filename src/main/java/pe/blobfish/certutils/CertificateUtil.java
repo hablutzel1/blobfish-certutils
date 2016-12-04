@@ -15,11 +15,8 @@ import java.util.Vector;
 public class CertificateUtil {
 
     public static String getSubjectName(X509Certificate signerCertificate) {
-        // TODO display a friendly name for the subject, consider that it is not an obligation for a certificate
-        // to contain a commonName attribute (RFC 3739 3.1.2. Subject, ETSI TS 119 412-2 V1.2.1 5.2.6)
-        // see for a solution: http://www.ldapexplorer.com/en/manual/103031800-view-show-friendly-names.htm
-        // http://php.net/manual/en/function.ldap-dn2ufn.php
-        // RFC 1779, RFC 1781
+        // TODO display a friendly name for the subject, consider that it is not an obligation for a certificate to contain a commonName attribute (RFC 3739 3.1.2. Subject, ETSI TS 119 412-2 V1.2.1 5.2.6), see for a solution: http://www.ldapexplorer .com/en/manual/103031800-view-show-friendly-names.htm, http://php.net/manual/en/function.ldap-dn2ufn.php RFC 1779, RFC 1781
+        // TODO evaluate to return the full DN if the CN is not found.
         return getFirstSubjectAttributeValue(signerCertificate, BCStyle.CN);
     }
 
@@ -36,7 +33,7 @@ public class CertificateUtil {
     // fields expected in a qualified certificate
 
     private static String getFirstSubjectAttributeValue(X509Certificate x509Certificate, ASN1ObjectIdentifier attributeIdentifier) {
-
+        // TODO evaluate to migrate to 'javax.naming.ldap.LdapName' as its API (ABI ?) seems more stable than the BC which is changing for example, from 1.44 to 1.49 disallowing this code to be used with both versions, first check in which Java version 'javax.naming.ldap.LdapName' got introduced.
         X509Principal principal;
         try {
             principal = PrincipalUtil.getSubjectX509Principal(x509Certificate);
